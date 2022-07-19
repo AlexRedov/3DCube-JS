@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Куб 3D</title>
+</head>
+<body>
+
+    <style>
+        * {
+	        box-sizing: border-box;
+        }
+
+        body {
+        background-color: rgb(64, 62, 62);
+        overflow: hidden;
+        }
+
+        .container {
+            position: relative;
+            margin: 200px auto;
+            width: 300px;
+            height: 300px;
+            perspective: 500px;
+        }
+
+        .cube {
+            width: inherit;
+            height: inherit;
+            transform-style: preserve-3d;
+        
+        }
+
+        .side {
+            position: absolute;
+            width: inherit;
+            height: inherit;
+            border: 5px solid rgb(244, 90, 90);
+            font: normal 70px Arial;
+            text-align: center;
+            line-height: 300px;
+            color: #fff;
+            backface-visibility: visible;
+        }
+
+        .front {
+            transform: translateZ(150px);
+        }
+
+        .back {
+            transform: rotateY(180deg) translateZ(150px);
+        }
+
+        .right {
+            transform: rotateY(90deg) translateZ(150px);
+        }
+
+        .left {
+            transform: rotateY(-90deg) translateZ(150px);
+        }
+
+        .top {
+            transform: rotateX(90deg) translateZ(150px);
+        }
+
+        .bottom {
+            transform: rotateX(-90deg) translateZ(150px);
+        }
+    </style>
+
+    <div class="container">
+        <div class="cube">
+          <div class="side front">front</div>
+          <div class="side back">back</div>
+          <div class="side right">right</div>
+          <div class="side left">left</div>
+          <div class="side top">top</div>
+          <div class="side bottom">bottom</div>
+        </div>
+      </div>
+
+    <script>
+
+        (function () {
+            var rotateY = 0,
+            rotateX = 0;
+
+            document.onkeydown = function (e) {
+                if (e.keyCode === 37) rotateY -= 10
+                else if (e.keyCode === 38) rotateX += 10
+                else if (e.keyCode === 39) rotateY += 10
+                else if (e.keyCode === 40) rotateX -= 10
+
+                document.querySelector('.cube').style.transform = 
+                    'rotateY(' + rotateY + 'deg)'+
+                    'rotateX(' + rotateX + 'deg)';
+            }
+        })();
+
+    </script>
+</body>
+</html>
